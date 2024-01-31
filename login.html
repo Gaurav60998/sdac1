@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Validation</title>
+<style>
+</style>
+</head>
+<body>
+
+<form id="myForm" onsubmit="return validateForm()">
+    <div>
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name">
+        <span id="nameError" class="error"></span>
+    </div>
+    <div>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email">
+        <span id="emailError" class="error"></span>
+    </div>
+    <div>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password">
+        <span id="passwordError" class="error"></span>
+    </div>
+    <input type="submit" value="Submit">
+</form>
+
+<script>
+    function validateForm() {
+        // Resetting previous error messages
+        document.getElementById('nameError').textContent = '';
+        document.getElementById('emailError').textContent = '';
+        document.getElementById('passwordError').textContent = '';
+    
+        // Getting form values
+        var name = document.getElementById('name').value.trim();
+        var email = document.getElementById('email').value.trim();
+        var password = document.getElementById('password').value.trim();
+    
+        // Validating name
+        if (!name.match(/^[A-Za-z]+$/)) {
+            alert('Name should contain only alphabetic characters.');
+            return false;
+        }
+    
+        // Validating email
+        if (!email.match(/^[\w-]+(?:\.[\w-]+)*@(?:[\w-]+\.)+[a-zA-Z]{2,7}$/)) {
+            alert('Invalid email format.');
+            return false;
+        }
+    
+        // Validating password
+        if (password.length < 8 || !password.match(/[A-Z]/) || !password.match(/[a-z]/) || !password.match(/\d/)) {
+            alert('Password should have a minimum length of 8 characters, including at least one uppercase letter, one lowercase letter, and one digit.');
+            return false;
+        }
+        alert('Form submitted successfully! Redirecting to the next page.');
+        window.location.href = 'index.html';
+
+// Redirecting to the next page after a short delay
+    }
+    </script>
+    
+<a href="index.html">hii</a>
+</body>
+</html>
